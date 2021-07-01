@@ -68,6 +68,7 @@ public class BlockProtectionManager {
     public BlockProtection addP(Location loc, Long time, boolean paid, boolean cache) {
         String v = loc.getBlockX() + ":" + loc.getBlockY() + ":" + loc.getBlockZ();
 
+
         HashMap<String, HashMap<String, HashMap<String, BlockProtection>>> regions = map.getOrDefault(loc.getWorld(), new HashMap<>());
 
         String region = locToRegion(loc);
@@ -84,9 +85,14 @@ public class BlockProtectionManager {
 
         Bp.setPaid(paid);
         Bp.setTime(time);
+
+        if (!shouldCache(loc.getBlock().getType()))
+            return Bp;
+        
         Bpm.put(v, Bp);
         chunks.put(chunk, Bpm);
         regions.put(region, chunks);
+
         map.put(loc.getWorld(), regions);
         if (cache)
             addToCache(loc, Bp);
