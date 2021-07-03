@@ -122,7 +122,7 @@ public class BlockProtectionManager {
     }
 
     private boolean shouldCache(Material material) {
-        String[] keywords = "ORE DIAMOND GOLD STONE COAL NETHERRITE ANCIENT_DEBRIS SHULKER_BOX".split(" ");
+        String[] keywords = "ORE DIAMOND EMERALD GOLD STONE COAL NETHERRITE ANCIENT_DEBRIS SHULKER_BOX".split(" ");
 
         for (String keyword : keywords)
             if (material.name().contains(keyword))
